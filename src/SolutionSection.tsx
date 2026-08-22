@@ -1,18 +1,23 @@
 import { useState, useEffect, useRef } from 'react';
 import type { UIEvent } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Noise = () => (
-  <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12] mix-blend-overlay z-0" xmlns="http://www.w3.org/2000/svg">
+  <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.2] mix-blend-overlay z-0" xmlns="http://www.w3.org/2000/svg">
     <filter id="noiseFilter">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch" />
     </filter>
     <rect width="100%" height="100%" filter="url(#noiseFilter)" />
   </svg>
 );
 
 const CardOne = () => (
-  <div className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_20px_rgba(0,0,0,0.06),_0_20px_60px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
     <div className="absolute top-[-5%] right-[-5%] text-[280px] md:text-[400px] lg:text-[500px] font-bold text-[#1A1A1A]/[0.06] leading-none tracking-tighter pointer-events-none select-none z-0">
@@ -32,7 +37,7 @@ const CardOne = () => (
         <h3 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight max-w-xl mb-8 md:mb-12">
           Know who is on the other side
         </h3>
-        <div className="flex flex-col gap-4 max-w-lg text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.5]">
+        <div className="flex flex-col gap-4 max-w-lg text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8]">
           <p>You found a flat.</p>
           <p>The agent seems fine.</p>
           <p>The landlord exists somewhere.</p>
@@ -47,11 +52,16 @@ const CardOne = () => (
         </p>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const CardTwo = () => (
-  <div className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_20px_rgba(0,0,0,0.06),_0_20px_60px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
     <div className="absolute bottom-[-10%] left-[-5%] text-[280px] md:text-[400px] lg:text-[500px] font-bold text-[#FFF5EB]/[0.08] leading-none tracking-tighter pointer-events-none select-none z-0">
@@ -74,7 +84,7 @@ const CardTwo = () => (
             See the place before you live there
           </h3>
         </div>
-        <div className="flex-1 max-w-lg flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.5] xl:pt-16">
+        <div className="flex-1 max-w-lg flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8] xl:pt-16">
           <p>The place looked perfect.</p>
           <p>The street was quiet when you visited.</p>
           <p>But nobody told you the road floods every August.</p>
@@ -89,11 +99,16 @@ const CardTwo = () => (
         </p>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const CardThree = () => (
-  <div className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_20px_rgba(0,0,0,0.06),_0_20px_60px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[400px] lg:text-[700px] font-bold text-[#1A1A1A]/[0.04] leading-none tracking-tighter pointer-events-none select-none z-0 flex items-center justify-center w-full h-full">
@@ -121,7 +136,7 @@ const CardThree = () => (
         </p>
       </div>
 
-      <div className="flex-1 w-full flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.5] max-w-lg">
+      <div className="flex-1 w-full flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8] max-w-lg">
         <p>You paid the deposit.</p>
         <p>Then the rent.</p>
         <p>Then the agency fee.</p>
@@ -135,11 +150,16 @@ const CardThree = () => (
         What if every payment came with a clear record that both sides could see?
       </p>
     </div>
-  </div>
+  </motion.div>
 );
 
 const CardFour = () => (
-  <div className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_20px_rgba(0,0,0,0.06),_0_20px_60px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
     <div className="absolute top-[5%] left-[5%] text-[280px] md:text-[400px] lg:text-[500px] font-bold text-[#FFF5EB]/[0.08] leading-none tracking-tighter pointer-events-none select-none z-0">
@@ -162,7 +182,7 @@ const CardFour = () => (
           <h3 className="text-[#FFF5EB] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight mb-8">
             Your home should remember what happened
           </h3>
-          <div className="flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.5]">
+          <div className="flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8]">
             <p>The tap started leaking.</p>
             <p>You sent a message.</p>
             <p>Then another.</p>
@@ -182,11 +202,16 @@ const CardFour = () => (
         </div>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const CardFive = () => (
-  <div className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_20px_rgba(0,0,0,0.06),_0_20px_60px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
     <div className="absolute bottom-[-15%] right-[-5%] text-[280px] md:text-[500px] lg:text-[600px] font-bold text-[#1A1A1A]/[0.05] leading-none tracking-tighter pointer-events-none select-none z-0">
@@ -210,7 +235,7 @@ const CardFive = () => (
         <h3 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight mb-8 md:mb-10">
           Your good rental history should follow you
         </h3>
-        <div className="flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.5]">
+        <div className="flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8]">
           <p>You paid on time.</p>
           <p>You took care of the place.</p>
           <p>You left it better than you found it.</p>
@@ -226,10 +251,14 @@ const CardFive = () => (
         </p>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 export const SolutionSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const yParallax = useTransform(scrollYProgress, [0, 1], [60, -60]);
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -277,7 +306,7 @@ export const SolutionSection = () => {
   }, [activeIndex, isHovered]);
 
   return (
-    <section className="bg-[#FFF5EB] py-24 md:py-32 lg:py-40 w-full overflow-hidden shrink-0">
+    <section ref={sectionRef} className="bg-[#FFF5EB] py-24 md:py-32 lg:py-40 w-full overflow-hidden shrink-0">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mb-12 md:mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
         <div className="max-w-3xl">
           <h2 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[72px] font-extrabold tracking-tight mb-6 leading-[1.05]">
@@ -314,10 +343,11 @@ export const SolutionSection = () => {
       </div>
 
       {/* Carousel Track */}
-      <div
+      <motion.div
+        style={{ y: yParallax, scrollBehavior: "smooth" }}
         ref={scrollRef}
         className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-24 pt-4 px-6 md:px-[10vw] lg:px-[15vw] gap-6 md:gap-10 lg:gap-14"
-        style={{ scrollBehavior: 'smooth' }}
+        
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onTouchStart={() => setIsHovered(true)}
@@ -332,7 +362,7 @@ export const SolutionSection = () => {
         
         {/* Trailing space to allow center-snapping of the last card on wide screens */}
         <div className="shrink-0 w-[5vw] lg:w-[15vw] snap-align-none pointer-events-none hidden md:block" />
-      </div>
+      </motion.div>
     </section>
   );
 };
