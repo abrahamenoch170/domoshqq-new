@@ -1,0 +1,265 @@
+import { useState, useEffect, useRef } from 'react';
+import type { UIEvent } from 'react';
+import { Bars3Icon, ArrowRightIcon, ArrowDownIcon } from '@heroicons/react/24/outline';
+import { TrendingUp } from 'lucide-react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { SolutionSection } from './SolutionSection';
+
+// Precise path for the African continent
+const AFRICA_PATH = "M163.8,15.3L162.5,18.2L162.0,28.9L158.5,32.1L159.6,37.3L165.9,43.7L168.2,54.2L169.3,58.5L169.8,74.6L167.5,76.6L170.7,83.6L177.9,86.4L180.0,90.6L158.1,104.5L150.2,111.7L142.6,113.3L138.2,114.1L137.7,109.8L131.3,107.6L127.8,103.2L98.9,82.7L80.3,70.4L80.3,68.4L80.3,62.6L87.7,57.5L95.3,56.1L98.4,52.7L104.2,50.2L103.6,46.0L108.3,43.7L116.3,43.7L117.2,41.3L114.1,37.0L113.7,28.4L111.4,26.3L127.8,17.8L145.2,15.5L147.4,17.0L153.3,14.4ZM185.3,229.9L181.1,235.4L180.2,231.8ZM185.8,235.9L202.3,236.2L203.9,242.4L206.8,246.5L215.7,246.3L216.5,241.4L227.3,242.8L227.4,253.2L229.1,255.7L229.8,262.1L238.0,260.3L238.1,270.9L228.4,270.9L228.4,286.7L235.5,294.0L225.4,296.0L212.7,294.7L211.2,292.8L190.8,292.8L185.7,290.6L178.9,292.2L182.5,273.0L187.2,268.3L189.0,261.0L184.8,251.6L186.8,248.2L181.6,237.0ZM130.0,177.4L129.9,163.7L128.7,159.0L125.9,157.1L126.6,154.1L133.7,149.6L135.8,147.2L139.5,150.6L140.7,155.5L135.6,163.6L135.3,176.7ZM218.7,331.0L218.7,316.5L223.5,316.5L223.5,297.6L234.6,295.9L236.7,298.1L244.2,294.9L248.4,303.6L256.0,308.8L257.4,314.2L264.0,317.5L259.1,319.5L252.4,325.4L251.8,328.3L247.1,330.9L245.7,335.6L241.1,336.7L235.4,333.8L226.8,342.3L222.1,342.4L222.9,338.4ZM123.3,134.7L122.9,136.6L126.9,143.9L132.5,145.7L133.7,149.6L126.6,154.1L121.4,153.4L108.4,154.0L109.1,161.5L104.6,159.2L99.4,160.4L95.5,156.8L96.7,149.9L100.8,147.6L102.9,141.8L105.0,143.3L110.2,137.8L118.6,133.8ZM264.2,229.0L262.3,220.8L269.8,219.1L271.1,221.9L267.2,228.2ZM190.1,143.8L194.8,148.7L194.9,155.0L197.0,158.5L190.7,159.1L189.5,160.7L195.5,166.4L197.0,171.1L193.3,177.2L192.3,181.9L195.8,189.8L199.9,193.5L200.4,196.8L200.2,199.2L192.5,197.0L186.3,197.1L176.9,197.0L169.5,196.2L169.8,191.6L163.6,184.3L165.0,179.2L171.2,173.5L177.2,176.1L182.0,165.8L189.8,152.7L192.7,151.6L192.9,148.2ZM0,124.6L0,124.6L0,124.6ZM12.0,129.3L12.0,129.3L12.0,129.3ZM8.5,134.7L8.5,134.7L8.5,134.7ZM212.1,190.7L202.8,190.4L200.4,196.8L199.9,193.5L195.8,189.8L192.3,181.9L193.3,177.2L197.0,171.1L211.9,168.6L214.3,163.8L220.5,163.3L230.6,154.0L232.6,154.4L236.4,159.6L235.7,165.3L244.1,169.5L243.9,171.2L249.7,175.4L254.7,183.3L245.5,181.5L231.0,187.1L221.7,186.2L215.8,182.7L211.7,186.8ZM232.6,154.4L230.6,154.0L220.5,163.3L214.3,163.8L211.9,168.6L197.0,171.1L195.5,166.4L189.5,160.7L190.7,159.1L197.0,158.5L194.9,155.0L194.8,148.7L190.1,143.8L187.9,140.6L187.1,137.1L191.5,130.5L196.9,124.7L198.2,109.2L199.4,107.1L195.5,101.2L194.6,93.3L199.4,90.9L215.3,99.1L238.1,111.5L238.0,130.7L233.7,130.7L231.1,138.6L228.8,140.3L229.5,145.4L232.9,152.0ZM332.0,265.6L332.0,265.6L332.0,265.6ZM185.3,229.9L180.2,231.8L175.9,226.5L179.3,224.7L178.8,219.2L188.4,218.1L191.8,216.7L192.3,210.5L189.0,208.5L192.1,203.1L191.1,201.1L186.1,201.1L186.3,197.1L192.5,197.0L200.2,199.2L200.4,196.8L202.8,190.4L212.1,190.7L209.5,196.8L207.7,210.1L200.3,218.0L200.5,223.6L193.7,230.9L191.7,228.2L186.9,231.1ZM326.9,146.8L330.4,145.6L331.0,151.7L329.5,154.0L324.1,154.1ZM242.9,98.5L242.9,59.7L241.5,54.4L243.6,46.2L254.2,47.8L262.4,50.9L268.7,47.0L274.8,47.4L280.2,49.7L287.5,48.2L290.4,56.9L288.4,66.7L282.7,63.5L279.1,56.3L279.7,61.2L284.2,67.2L286.0,73.8L293.5,87.3L294.4,93.5L300.3,98.5ZM163.8,189.9L163.8,189.9L163.8,189.9ZM169.5,196.2L176.9,197.0L177.0,202.7L169.5,202.7L167.3,201.9ZM298.6,137.9L298.1,133.5L300.9,124.1L308.6,119.1L312.7,131.6L321.0,136.1L326.8,143.1L330.4,145.6L326.9,146.8L319.3,138.5L305.2,134.8L303.6,138.7ZM326.9,146.8L324.1,154.1L329.5,154.0L328.2,155.8L334.7,163.8L349.2,168.7L353.9,168.7L339.2,183.8L334.6,183.5L324.5,188.3L319.1,186.8L312.9,190.8L306.3,190.1L300.3,186.1L295.7,185.2L295.1,181.7L291.7,180.3L290.0,175.5L285.0,170.4L281.8,169.8L282.7,166.5L286.9,165.9L286.8,161.2L289.2,154.6L294.6,145.8L296.7,145.6L298.6,137.9L303.6,138.7L305.2,134.8L319.3,138.5ZM169.5,202.7L177.0,202.7L176.9,197.0L186.3,197.1L186.1,201.1L191.1,201.1L192.1,203.1L189.0,208.5L192.3,210.5L191.8,216.7L188.4,218.1L178.8,219.2L179.3,224.7L175.9,226.5L166.8,216.4L164.2,210.6L167.0,209.3L167.1,204.5ZM42.1,141.3L50.4,140.3L45.8,143.4L41.2,143.9ZM108.0,182.8L108.8,180.5L106.4,175.5L110.1,167.8L109.1,161.5L108.4,154.0L121.4,153.4L123.9,157.7L124.6,171.4L127.9,178.0L112.2,184.6ZM72.5,166.4L68.0,159.0L61.8,159.6L57.9,163.7L49.6,154.3L51.2,151.5L55.9,150.5L55.9,145.8L62.5,147.6L67.2,147.1L70.7,149.7L77.9,146.7L81.7,152.2L83.6,158.2L83.4,167.9L81.2,170.9L76.6,171.6L76.3,167.1ZM41.4,147.5L48.6,145.7L55.9,145.8L55.9,150.5L51.2,151.5L49.6,154.3L46.4,150.1ZM85.8,186.5L86.3,179.3L80.7,175.9L81.2,170.9L83.4,167.9L83.6,158.2L88.0,158.0L90.0,155.7L95.5,156.8L99.4,160.4L104.6,159.2L109.1,161.5L110.1,167.8L106.4,175.5L108.8,180.5L108.0,182.8L100.5,181.9L94.0,183.2ZM324.5,188.3L320.1,193.8L320.1,211.7L322.9,215.6L316.5,220.4L311.5,230.1L303.8,224.5L304.1,222.3L286.0,212.4L285.9,207.0L291.2,199.5L290.7,195.3L286.3,187.1L288.2,185.2L295.7,185.2L300.3,186.1L306.3,190.1L312.9,190.8L319.1,186.8ZM262.9,358.3L257.8,363.2L252.6,357.4L260.5,351.6L264.4,355.9ZM66.6,174.0L72.5,166.4L76.3,167.1L76.6,171.6L81.2,170.9L80.7,175.9L86.3,179.3L85.8,186.5L78.4,183.3ZM180.0,90.6L177.9,86.4L170.7,83.6L167.5,76.6L169.8,74.6L169.3,58.5L168.2,54.2L171.8,50.4L171.0,47.5L178.1,41.6L177.8,37.5L186.2,39.0L195.2,41.9L197.5,47.1L206.0,49.4L213.7,54.0L217.6,52.6L219.5,49.0L218.4,44.5L221.4,41.1L226.6,38.9L233.8,40.6L233.6,42.3L242.7,44.4L243.6,46.2L241.5,54.4L242.9,59.7L242.9,98.5L242.9,108.9L238.0,108.9L238.1,111.5L215.3,99.1L199.4,90.9L194.6,93.3L190.9,95.3L186.9,92.2ZM355.6,272.9L355.6,272.9L355.6,272.9ZM354.1,276.1L353.5,273.8L357.8,272.6L358.6,267.7L361.3,267.6L364.1,274.0L366.0,281.8L364.8,285.7L361.9,283.5L362.6,290.0L360.6,297.7L349.6,332.2L340.5,335.4L334.7,332.2L333.4,324.1L331.0,318.0L332.2,313.0L337.0,306.0L334.5,293.0L336.8,286.9L345.8,284.4ZM282.6,275.9L280.5,274.0L283.3,268.6L282.7,260.5L284.9,258.8L281.2,253.2L288.9,256.3L291.0,263.8L288.1,267.0L289.5,273.3L295.4,279.1L295.1,285.9L291.8,288.6L292.6,291.5L287.6,285.4L289.2,282.2L288.1,277.7L284.6,278.5ZM98.9,82.7L127.8,103.2L131.3,107.6L137.7,109.8L138.2,114.1L142.6,113.3L142.4,127.2L139.1,132.4L128.5,132.8L123.3,134.7L118.6,133.8L110.2,137.8L105.0,143.3L102.9,141.8L100.8,147.6L96.7,149.9L95.5,156.8L90.0,155.7L88.0,158.0L83.6,158.2L81.7,152.2L77.9,146.7L70.7,149.7L67.2,147.1L63.8,140.7L63.0,135.4L66.9,131.0L70.4,132.0L95.6,131.7L90.3,82.7ZM80.3,70.4L98.9,82.7L90.3,82.7L95.6,131.7L70.4,132.0L66.9,131.0L63.0,135.4L57.4,128.9L52.8,126.0L43.5,126.6L42.3,128.9L44.6,120.5L43.0,112.0L43.9,107.7L40.4,102.9L39.7,105.0L40.2,102.0L59.3,102.0L59.3,93.2L64.2,90.9L64.2,77.4L80.3,77.4ZM400,308.8L400,308.8L400,308.8ZM80.3,68.4L58.5,68.4L66.5,64.9L74.8,56.2L74.7,47.4L77.3,41.0L80.9,37.1L89.3,32.4L93.5,22.2L101.1,26.0L107.9,24.9L111.4,26.3L113.7,28.4L114.1,37.0L117.2,41.3L116.3,43.7L108.3,43.7L103.6,46.0L104.2,50.2L98.4,52.7L95.3,56.1L87.7,57.5L80.3,62.6ZM281.0,342.2L277.3,342.2L276.5,337.4L276.8,329.4L273.3,318.7L278.7,312.9L281.8,305.0L280.5,303.4L281.9,297.7L281.4,289.4L269.0,284.0L268.1,280.7L282.6,275.9L284.6,278.5L288.1,277.7L289.2,282.2L287.6,285.4L292.6,291.5L291.8,288.6L295.1,285.9L295.4,279.1L289.5,273.3L288.1,267.0L291.0,263.8L303.1,264.6L306.1,262.2L311.8,261.8L317.4,258.4L319.4,279.5L313.9,288.5L301.8,294.7L297.2,300.5L294.4,301.6L289.5,308.2L293.8,317.7L293.6,327.6L291.6,330.3L281.0,335.2L279.5,337.5ZM235.5,294.0L244.2,294.9L236.7,298.1L234.6,295.9L223.5,297.6L223.5,316.5L218.7,316.5L218.7,331.0L218.7,350.8L214.4,353.8L206.2,352.4L204.5,348.7L201.8,351.7L196.0,344.8L192.0,327.6L191.9,322.5L192.3,320.1L186.8,310.6L182.3,300.7L178.9,295.8L178.9,292.2L185.7,290.6L190.8,292.8L211.2,292.8L212.7,294.7L225.4,296.0ZM139.5,150.6L135.8,147.2L133.7,149.6L132.5,145.7L126.9,143.9L122.9,136.6L123.3,134.7L128.5,132.8L139.1,132.4L142.4,127.2L142.6,113.3L150.2,111.7L158.1,104.5L180.0,90.6L186.9,92.2L190.9,95.3L194.6,93.3L195.5,101.2L199.4,107.1L198.2,109.2L196.9,124.7L191.5,130.5L187.1,137.1L187.9,140.6L182.3,143.8L177.5,142.3L171.3,142.8L168.7,145.2L159.9,142.4L155.6,144.2L148.9,139.8L143.7,140.8L139.8,146.5ZM187.9,140.6L190.1,143.8L192.9,148.2L192.7,151.6L189.8,152.7L182.0,165.8L177.2,176.1L171.2,173.5L165.0,179.2L163.6,184.3L151.6,186.9L149.1,185.1L145.7,178.4L143.3,176.7L135.3,176.7L135.6,163.6L140.7,155.5L139.5,150.6L139.8,146.5L143.7,140.8L148.9,139.8L155.6,144.2L159.9,142.4L168.7,145.2L171.3,142.8L177.5,142.3L182.3,143.8ZM391.2,311.3L391.2,311.3L391.2,311.3ZM262.3,220.8L265.1,214.2L269.4,212.7L271.3,217.6L269.8,219.1ZM153.6,207.4L153.6,207.4L153.6,207.4ZM42.3,128.9L43.5,126.6L52.8,126.0L57.4,128.9L63.0,135.4L63.8,140.7L67.2,147.1L62.5,147.6L55.9,145.8L48.6,145.7L41.4,147.5L41.2,143.9L45.8,143.4L50.4,140.3L42.1,141.3L38.1,135.2ZM390.4,230.7L390.4,230.7L390.4,230.7ZM57.9,163.7L61.8,159.6L68.0,159.0L72.5,166.4L66.6,174.0L61.7,171.7ZM322.9,215.6L320.1,211.7L320.1,193.8L324.5,188.3L334.6,183.5L339.2,183.8L353.9,168.7L349.2,168.7L334.7,163.8L328.2,155.8L329.5,154.0L331.0,151.7L336.0,156.8L343.4,154.7L346.5,155.6L369.8,149.9L369.5,156.9L367.7,161.7L354.0,185.6L343.8,196.2L332.2,204.4ZM192.3,320.1L191.9,322.5L192.3,320.1ZM264.0,317.5L273.3,318.7L276.8,329.4L276.5,337.4L273.9,336.2L270.9,340.2L272.6,344.1L277.3,342.2L281.0,342.2L278.6,351.4L272.9,357.0L268.9,364.3L260.0,374.1L253.0,379.6L242.0,383.5L236.4,382.2L229.1,382.9L218.7,387.1L212.9,384.4L208.3,375.6L210.4,374.4L209.9,369.0L205.6,361.5L201.8,351.7L204.5,348.7L206.2,352.4L214.4,353.8L218.7,350.8L218.7,331.0L222.9,338.4L222.1,342.4L226.8,342.3L235.4,333.8L241.1,336.7L245.7,335.6L247.1,330.9L251.8,328.3L252.4,325.4L259.1,319.5ZM262.9,358.3L264.4,355.9L260.5,351.6L252.6,357.4L257.8,363.2ZM286.9,161.5L283.0,155.0L279.0,153.9L273.5,160.1L267.0,157.6L261.0,162.2L249.5,161.1L243.5,157.5L239.3,165.4L235.7,165.2L236.4,159.5L232.6,154.5L231.4,148.8L228.1,146.0L233.8,130.7L238.1,130.7L238.0,108.9L242.9,108.9L242.9,98.5L282.3,98.5L286.4,99.7L290.9,94.1L294.2,92.6L300.3,98.2L302.8,114.6L307.0,117.7L300.9,123.7L296.3,145.5L291.4,150.4L291.0,154.5L287.8,156.1ZM286.9,161.5L287.0,165.7L282.4,166.8L291.3,176.3L291.8,180.3L295.3,181.8L295.8,185.1L288.2,185.2L284,189.4L271.2,190.3L265.1,185.0L259.1,186.8L255.3,183.9L244.6,171.9L244.2,169.7L239.3,165.4L243.5,157.5L249.5,161.1L261.0,162.2L267.0,157.6L273.5,160.1L279.0,153.9L283.0,155.0ZM276.5,337.4L277.3,342.2L272.6,344.1L270.9,340.2L273.9,336.2ZM314.6,232.5L314.6,232.5L314.6,232.5ZM311.9,237.8L311.9,237.8L311.9,237.8ZM270.7,247.2L265.6,239.4L264.2,229.0L267.2,228.2L271.1,221.9L269.8,219.1L271.3,217.6L269.4,212.7L286.0,212.4L304.1,222.3L303.8,224.5L311.5,230.1L309.4,236.7L313.1,241.8L312.2,249.8L314.5,256.0L317.4,258.4L311.8,261.8L306.1,262.2L303.1,264.6L291.0,263.8L288.9,256.3L281.2,253.2L271.8,249.0ZM130.0,177.4L127.9,178.0L124.6,171.4L123.9,157.7L121.4,153.4L126.6,154.1L125.9,157.1L128.7,159.0L129.9,163.7ZM177.8,37.5L178.1,41.6L171.0,47.5L171.8,50.4L168.2,54.2L165.9,43.7L159.6,37.3L158.5,32.1L162.0,28.9L162.5,18.2L163.8,15.3L168.8,12.9L172.4,16.6L175.9,25.5L170.4,31.7ZM269.4,212.7L265.1,214.2L266.9,203.5L273.3,197.1L270.6,195.7L271.2,190.6L275.7,189.1L277.6,190.5L284.0,189.4L286.3,187.1L290.7,195.3L291.2,199.5L285.9,207.0L286.0,212.4ZM58.5,68.4L80.3,68.4L80.3,70.4L80.3,77.4L64.2,77.4L64.2,90.9L59.3,93.2L59.3,102.0L40.2,102.0L39.7,105.0L40.2,99.4L45.9,88.5L50.1,84.4L52.2,76.5L56.3,73.7ZM264.2,229.0L265.6,239.4L270.7,247.2L261.7,248.6L259.2,252.6L260.7,259.3L259.1,263.6L262.3,267.8L266.1,266.7L266.1,273.1L262.3,272.8L259.1,268.1L240.2,263.3L238.0,260.3L229.8,262.1L229.1,255.7L227.4,253.2L227.3,242.8L216.5,241.4L215.7,246.3L206.8,246.5L203.9,242.4L202.3,236.2L185.8,235.9L181.1,235.4L185.3,229.9L186.9,231.1L191.7,228.2L193.7,230.9L200.5,223.6L200.3,218.0L207.7,210.1L209.5,196.8L212.1,190.7L211.7,186.8L215.8,182.7L221.7,186.2L231.0,187.1L245.5,181.5L254.7,183.3L259.1,186.8L266.1,185.5L271.2,190.6L270.6,195.7L273.3,197.1L266.9,203.5L265.1,214.2L262.3,220.8ZM235.5,294.0L228.4,286.7L228.4,270.9L238.1,270.9L238.0,260.3L240.2,263.3L259.1,268.1L262.3,272.8L266.1,273.1L266.1,266.7L262.3,267.8L259.1,263.6L260.7,259.3L259.2,252.6L261.7,248.6L270.7,247.2L271.8,249.0L281.2,253.2L284.9,258.8L282.7,260.5L283.3,268.6L280.5,274.0L282.6,275.9L268.1,280.7L269.0,284.0L261.5,286.1L261.0,288.6L256.5,290.7L251.1,296.3L244.2,294.9ZM273.3,318.7L264.0,317.5L257.4,314.2L256.0,308.8L248.4,303.6L244.2,294.9L251.1,296.3L256.5,290.7L261.0,288.6L261.5,286.1L269.0,284.0L281.4,289.4L281.9,297.7L280.5,303.4L281.8,305.0L278.7,312.9Z";
+
+const Header = () => {
+  return (
+    <header className="absolute top-0 left-0 w-full z-50 h-[88px] px-6 md:px-10 flex items-center justify-between bg-transparent">
+      <div className="flex items-center gap-3 cursor-pointer group">
+        {/* Logo: 4 orange ellipses on transparent background */}
+        <div className="relative w-[36px] h-[36px] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+          <svg width="100%" height="100%" viewBox="0 0 100 100">
+            <ellipse cx="32" cy="32" rx="14" ry="22" transform="rotate(-45 32 32)" fill="#F26522" />
+            <ellipse cx="68" cy="32" rx="14" ry="22" transform="rotate(45 68 32)" fill="#F26522" />
+            <ellipse cx="32" cy="68" rx="14" ry="22" transform="rotate(45 32 68)" fill="#F26522" />
+            <ellipse cx="68" cy="68" rx="14" ry="22" transform="rotate(-45 68 68)" fill="#F26522" />
+          </svg>
+        </div>
+        <div className="text-[22px] leading-none tracking-tight flex items-center mt-1">
+          <span className="text-[#1A1A1A] font-extrabold">MyDomos</span>
+          <span className="text-[#F26522] font-semibold ml-1.5">Africa</span>
+        </div>
+      </div>
+      <button className="p-2.5 -mr-2.5 rounded-full hover:bg-black/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 focus:ring-offset-transparent">
+        <Bars3Icon className="w-7 h-7 text-[#1A1A1A]" strokeWidth={1.5} />
+      </button>
+    </header>
+  );
+}
+
+const Hero = () => {
+  return (
+    <main className="relative pt-[120px] pb-16 px-6 flex flex-col items-center justify-center text-center animate-fade-in flex-1">
+      {/* Centered Map Visual */}
+      <div className="relative w-[320px] md:w-[400px] lg:w-[480px] aspect-square flex items-center justify-center mb-6">
+        <div className="absolute inset-0">
+          <svg viewBox="0 -10 400 420" className="w-full h-full drop-shadow-sm">
+            <path
+              d={AFRICA_PATH}
+              fill="rgba(255, 232, 214, 0.7)"
+              stroke="#F26522"
+              strokeWidth="1.5"
+              strokeOpacity="0.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="hover:fill-[#F26522]/20 transition-colors duration-500"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* Typography */}
+      <div className="relative z-30 max-w-[640px] mx-auto">
+        <h1 className="text-[36px] md:text-[48px] lg:text-[56px] font-bold text-[#1A1A1A] leading-[1.1] tracking-tight">
+          RENTING IN AFRICA,<br />
+          WITHOUT THE <span className="text-[#F26522]">ANXIETY.</span>
+        </h1>
+        
+        <p className="mt-5 text-[16px] md:text-[18px] text-[#6B6B6B] leading-[1.6] max-w-[540px] mx-auto">
+          Every year, thousands of people across the continent lose money, time, and trust to a system built on handshakes and hope. We're building the infrastructure that makes renting safe — for everyone.
+        </p>
+
+        {/* CTAs */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#F26522] text-white text-[16px] font-semibold px-[36px] py-[16px] rounded-[100px] shadow-[0_8px_24px_rgba(242,101,34,0.25)] hover:bg-[#E55A1B] hover:shadow-[0_4px_12px_rgba(242,101,34,0.3)] hover:-translate-y-[1px] active:translate-y-[1px] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F26522] focus:ring-offset-[#FFF8F0]">
+            Join Waitlist
+            <ArrowRightIcon className="w-[18px] h-[18px]" strokeWidth={2.5} />
+          </button>
+          
+          <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent border-[1.5px] border-[#1A1A1A] text-[#1A1A1A] text-[16px] font-semibold px-[36px] py-[16px] rounded-[100px] hover:bg-black/5 hover:-translate-y-[1px] active:translate-y-[1px] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1A1A1A] focus:ring-offset-[#FFF8F0]">
+            See how it works
+            <ArrowDownIcon className="w-[18px] h-[18px]" strokeWidth={2.5} />
+          </button>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+
+interface StoryCardProps {
+  align: 'left' | 'right';
+  statHighlight: string;
+  statText: string;
+  title: string;
+  text: string;
+  name: string;
+  role: string;
+  image: string;
+  index: number;
+}
+
+const NoiseOverlay = () => (
+  <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08] mix-blend-overlay z-0" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noiseFilterCard">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilterCard)" />
+  </svg>
+);
+
+const StoryCard = ({ align, statHighlight, statText, title, text, name, role, image, index }: StoryCardProps) => {
+  const isRight = align === 'right';
+
+  return (
+    <motion.div
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: (i: number) => ({
+          opacity: 1,
+          y: 0,
+          transition: { delay: i * 0.15, duration: 0.6, ease: [0.32, 0.72, 0, 1] }
+        })
+      }}
+      className={`flex flex-col gap-2 w-full ${isRight ? 'items-end' : 'items-start'}`}
+    >
+      {/* Stat Label */}
+      <div className="flex items-center gap-1.5 text-white/90 text-[13px] md:text-[14px]">
+        <TrendingUp className="w-[18px] h-[18px] text-white shrink-0" strokeWidth={2.5} />
+        <span><strong className="text-white font-bold">{statHighlight}</strong> {statText}</span>
+      </div>
+
+      {/* Chat Bubble */}
+      <div className="bg-[#1A1A1A] text-white p-6 md:p-8 rounded-[24px] max-w-[340px] md:max-w-[420px] shadow-[0_12px_40px_rgba(0,0,0,0.15)] relative overflow-hidden">
+        <NoiseOverlay />
+        <div className="relative z-10 flex flex-col gap-3">
+          <span className="font-black text-[24px] md:text-[28px] leading-[1.4] text-[#FFF5EB] tracking-tight">{title}</span>
+          <span className="text-[18px] text-[#FFF5EB]/80 leading-relaxed font-medium">{text}</span>
+        </div>
+      </div>
+
+      {/* Avatar and Name */}
+      <div className={`flex flex-col items-center mt-1 ${isRight ? 'mr-4 md:mr-6' : 'ml-4 md:ml-6'}`}>
+        <img src={image} alt={name} className="w-10 h-10 rounded-full object-cover" />
+        <div className="text-center mt-1 leading-[1.2]">
+          <div className="text-[12px] font-bold text-white">{name},</div>
+          <div className="text-[12px] font-medium text-white/80">{role}</div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const BetrayalSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"]
+  });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
+  return (
+    <section ref={ref} className="relative w-full bg-[#F26522] pt-[40px] pb-[80px] flex flex-col items-center">
+      <div className="w-full max-w-[640px] mx-auto px-6 flex flex-col gap-10">
+
+        {/* The Problem Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+          className="flex flex-col items-center text-center mb-4 md:mb-6 max-w-[480px] mx-auto gap-4"
+        >
+          <span className="text-white/80 text-[15px] font-medium">The Problem</span>
+          <h2 className="text-[26px] md:text-[32px] font-bold text-white leading-[1.3] tracking-tight">
+            Renting across Africa is broken. These systemic issues affect tenants, landlords, and agents every day.
+          </h2>
+        </motion.div>
+
+        <StoryCard
+          align="left"
+          statHighlight="Unknown"
+          statText="hidden debt transferred yearly"
+          title="Hidden Liabilities;"
+          text="Tenants inherit unexpected liabilities like outstanding electricity bills after signing and moving in."
+          name="Mazi"
+          role="Landlord"
+          image="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=150&q=80"
+          index={0}
+        />
+
+        <StoryCard
+          align="right"
+          statHighlight="40%+"
+          statText="of rentals involve deception"
+          title="Rental Fraud;"
+          text="Money changes hands before anyone can confirm who actually owns, manages, or has the right to let the property."
+          name="Kofi"
+          role="Tenant"
+          image="https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=150&q=80"
+          index={1}
+        />
+
+        <StoryCard
+          align="left"
+          statHighlight="80%+"
+          statText="of African rentals lack written agreements"
+          title="Poor Documentation;"
+          text="Agreements live in WhatsApp chats and paper receipts, mostly difficult to produce as soon as disputes occurs."
+          name="David"
+          role="Landlord"
+          image="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=150&q=80"
+          index={2}
+        />
+
+        <StoryCard
+          align="right"
+          statHighlight="75%+"
+          statText="of tenants fall victim yearly"
+          title="Illegal & Unfair clauses;"
+          text="Leases are drafted once, signed under pressure and rarely reviewed by anyone besides who wrote them."
+          name="Zuri"
+          role="Tenant"
+          image="https://images.unsplash.com/photo-1531123897727-8f129e1b42ce?auto=format&fit=crop&w=150&q=80"
+          index={3}
+        />
+
+        <StoryCard
+          align="left"
+          statHighlight="70%+"
+          statText="of disputes involve agents"
+          title="Fake Agents;"
+          text="Anyone can claim to be an agent. Few can prove it and tenants have no shared registry to check against."
+          name="Hassan"
+          role="Agent"
+          image="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=150&q=80"
+          index={4}
+        />
+
+      </div>
+      
+      {/* Scroll Progress Bar */}
+      <div className="sticky bottom-0 left-0 w-full h-1.5 md:h-2 bg-[#1A1A1A]/10 mt-16 z-50">
+        <motion.div 
+          className="h-full bg-[#1A1A1A] origin-left" 
+          style={{ scaleX }} 
+        />
+      </div>
+    </section>
+  );
+};
+
+export default function App() {
+  return (
+    <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col">
+      <div className="w-full bg-[#F26522] flex flex-col shrink-0">
+        <div className="w-full bg-[#FFF8F0] min-h-[calc(100vh-40px)] md:min-h-[calc(100vh-60px)] rounded-b-[40px] md:rounded-b-[60px] shadow-[0_10px_40px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col shrink-0 z-10">
+          <Header />
+          <Hero />
+        </div>
+        <BetrayalSection />
+      </div>
+      <SolutionSection />
+    </div>
+  );
+}
