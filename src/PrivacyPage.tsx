@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { SEO } from './SEO';
 import { Header } from './Header';
 import { Footer } from './Footer';
 
@@ -8,7 +9,9 @@ export const PrivacyPage = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col">
+    <>
+      <SEO title="Privacy Policy — MyDomos Africa" description="Privacy Policy for MyDomos Africa." path="/privacy" />
+      <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col">
       <Header />
       
       {/* Hero Section */}
@@ -125,5 +128,6 @@ export const PrivacyPage = () => {
 
       <Footer />
     </div>
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { SEO } from './SEO';
 import { Header } from './Header';
 import { Footer } from './Footer';
 
@@ -8,7 +9,9 @@ export const TermsPage = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col">
+    <>
+      <SEO title="Terms of Use — MyDomos Africa" description="Terms of Use for MyDomos Africa." path="/terms" />
+      <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col">
       <Header />
       
       {/* Hero Section */}
@@ -139,5 +142,6 @@ export const TermsPage = () => {
 
       <Footer />
     </div>
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SEO } from './SEO';
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
@@ -51,7 +52,9 @@ export const PartnerPage = () => {
   };
 
   return (
-    <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col overflow-x-hidden">
+    <>
+      <SEO title="Partner With MyDomos Africa" description="Partner with MyDomos Africa to help build neutral rental trust infrastructure for Africa." path="/partner" />
+      <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col overflow-x-hidden">
       <Header />
       
       <div className="w-full bg-[#F26522] flex flex-col shrink-0">
@@ -297,5 +300,6 @@ export const PartnerPage = () => {
 
       <Footer />
     </div>
+    </>
   );
 };

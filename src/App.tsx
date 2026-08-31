@@ -5,6 +5,9 @@ import { WaitlistPage } from "./WaitlistPage";
 import { PartnerPage } from "./PartnerPage";
 import { PrivacyPage } from "./PrivacyPage";
 import { TermsPage } from "./TermsPage";
+import { SharePage } from "./SharePage";
+import { NotFoundPage } from "./NotFoundPage";
+import { SEO } from "./SEO";
 import { useState, useEffect, useRef } from 'react';
 import type { UIEvent } from 'react';
 import { Bars3Icon, ArrowRightIcon, ArrowDownIcon } from '@heroicons/react/24/outline';
@@ -237,7 +240,14 @@ const BetrayalSection = () => {
 
 const LandingPage = () => {
   return (
+    <>
+      <SEO title="MyDomos Africa — Rental Trust Infrastructure for Africa" description="MyDomos Africa is building neutral trust infrastructure for renting across Africa — helping tenants, landlords and agents navigate rental relationships with greater clarity and confidence." path="/" />
       <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col">
+        <SEO 
+          title="MyDomos Africa — Rental Trust Infrastructure for Africa"
+          description="MyDomos Africa is building neutral trust infrastructure for renting across Africa — helping tenants, landlords and agents navigate rental relationships with greater clarity and confidence."
+          path="/"
+        />
         <Header />
         <div className="w-full bg-[#F26522] flex flex-col shrink-0">
           <div className="w-full bg-[#FFF8F0] min-h-[calc(100vh-40px)] md:min-h-[calc(100vh-60px)] rounded-b-[40px] md:rounded-b-[60px] shadow-[0_10px_40px_rgba(242,101,34,0.15)] relative flex flex-col shrink-0 z-10">
@@ -251,6 +261,7 @@ const LandingPage = () => {
         <FaqSection />
         <Footer />
       </div>
+    </>
   );
 };
 
@@ -262,7 +273,9 @@ export default function App() {
         <Route path="/waitlist" element={<WaitlistPage />} />
         <Route path="/partner" element={<PartnerPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/share" element={<SharePage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

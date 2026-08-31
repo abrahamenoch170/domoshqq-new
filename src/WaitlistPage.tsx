@@ -1,3 +1,4 @@
+import { SEO } from './SEO';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
@@ -114,6 +115,8 @@ export const WaitlistPage = () => {
 
   if (isSuccess) {
     return (
+    <>
+      <SEO title="Join the MyDomos Africa Waitlist" description="Be among the first to experience MyDomos Africa as we build rental trust infrastructure, starting with Lagos." path="/waitlist" />
       <div className="w-full bg-[#FFF5EB] min-h-screen flex flex-col selection:bg-[#F26522]/20 selection:text-[#1A1A1A]">
         {/* Simple Header */}
         <header className="w-full h-[80px] flex items-center justify-between px-6 md:px-12 shrink-0">
@@ -139,11 +142,14 @@ export const WaitlistPage = () => {
           </div>
         </motion.main>
       </div>
+      </>
     );
   }
 
   return (
-    <div className="w-full bg-[#FFF5EB] min-h-screen flex flex-col selection:bg-[#F26522]/20 selection:text-[#1A1A1A]">
+    <>
+      <SEO title="Join the MyDomos Africa Waitlist" description="Be among the first to experience MyDomos Africa as we build rental trust infrastructure, starting with Lagos." path="/waitlist" />
+      <div className="w-full bg-[#FFF5EB] min-h-screen flex flex-col selection:bg-[#F26522]/20 selection:text-[#1A1A1A]">
       {/* Simple Header */}
       <header className="w-full h-[80px] flex items-center justify-between px-6 md:px-12 shrink-0">
         <button onClick={() => navigate('/')} className="text-[#1A1A1A] font-bold text-[22px] tracking-tight hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#F26522] rounded-md px-1">
@@ -307,5 +313,6 @@ export const WaitlistPage = () => {
         </div>
       </main>
     </div>
+    </>
   );
 };

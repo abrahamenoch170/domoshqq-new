@@ -1,0 +1,16 @@
+{
+  "name": "MyDomos Africa",
+  "short_name": "MyDomos",
+  "description": "Rental trust infrastructure for Africa.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF5EB",
+  "theme_color": "#F26522",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

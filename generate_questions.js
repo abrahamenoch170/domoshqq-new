@@ -1,0 +1,266 @@
+const tenantQuestions = [
+  {
+    id: "t_q1",
+    text: "When was the last time you rented a place?",
+    type: "radio",
+    options: ["Within the last 3 months", "3–12 months ago", "1–3 years ago", "More than 3 years ago"]
+  },
+  {
+    id: "t_q2",
+    text: "What was the hardest part of finding the place?",
+    type: "radio",
+    options: ["Knowing which listings or people to trust", "Knowing whether the property was genuine", "Understanding the true cost", "Knowing whether the landlord/agent was legitimate", "Getting enough information about the property", "Dealing with agents or intermediaries", "Something else"],
+    optionalShortResponse: "Tell us what happened."
+  },
+  {
+    id: "t_q3",
+    text: "Before you paid anything, what did you actually know about the person you were dealing with?",
+    type: "radio",
+    options: ["I knew them personally", "Someone I trusted referred them", "I checked them myself", "The agent/platform gave me some confidence", "I mostly relied on what they told me", "I knew very little"]
+  },
+  {
+    id: "t_q4",
+    text: "What made you decide it was safe enough to move forward?",
+    type: "checkbox",
+    options: ["Recommendation from someone I trusted", "Seeing the property", "Speaking with the landlord", "Speaking with the agent", "Documents or proof shown to me", "Previous experience with the person", "I had no better option", "Something else"]
+  },
+  {
+    id: "t_q5",
+    text: "Did anything turn out to be different from what you were told before you paid or moved in?",
+    type: "radio",
+    options: ["Yes", "No", "Not sure"],
+    conditional: {
+      dependsOnOption: "Yes",
+      questionText: "What was different?"
+    }
+  },
+  {
+    id: "t_q6",
+    text: "During the tenancy, what caused the most friction?",
+    type: "radio",
+    options: ["Repairs or maintenance", "Rent or payment issues", "Deposit", "Utilities or bills", "Communication", "Agreement or promises", "Property condition", "Privacy/access", "Nothing significant", "Something else"]
+  },
+  {
+    id: "t_q7",
+    text: "When something went wrong, where did the record of what happened live?",
+    type: "radio",
+    options: ["WhatsApp/messages", "Email", "Paper documents", "Bank/payment records", "Photos/videos", "I kept my own notes", "There was no proper record", "Somewhere else"]
+  },
+  {
+    id: "t_q8",
+    text: "Did you ever need to prove what had happened during the rental?",
+    type: "radio",
+    options: ["Yes", "No", "Almost"],
+    conditional: {
+      dependsOnOption: "Yes",
+      questionText: "What were you trying to prove?"
+    }
+  },
+  {
+    id: "t_q9",
+    text: "Have you ever lost money because of a rental problem?",
+    type: "radio",
+    options: ["Yes", "No", "Not directly, but it cost me significant time or stress"],
+    conditional: {
+      dependsOnOption: "Yes",
+      questionText: "What happened?"
+    }
+  },
+  {
+    id: "t_q10",
+    text: "How was the problem eventually resolved?",
+    type: "radio",
+    options: ["We resolved it directly", "An agent helped", "Family/friends helped", "A lawyer or authority became involved", "I simply accepted the loss/problem", "It was never resolved", "Something else"]
+  },
+  {
+    id: "t_q11",
+    text: "What do you do differently now because of that experience?",
+    type: "shortText"
+  },
+  {
+    id: "t_q12",
+    text: "Before your next rental, what is the one thing you wish you could know with confidence?",
+    type: "shortText"
+  }
+];
+
+const landlordQuestions = [
+  {
+    id: "l_q1",
+    text: "When was the last time you rented out a property?",
+    type: "radio",
+    options: ["Within the last 3 months", "3–12 months ago", "1–3 years ago", "More than 3 years ago"]
+  },
+  {
+    id: "l_q2",
+    text: "What is the hardest part of finding a tenant you feel comfortable renting to?",
+    type: "radio",
+    options: ["Knowing whether they are genuine", "Knowing whether they can pay", "Knowing their rental history", "Knowing whether they will take care of the property", "Verifying information they provide", "Getting reliable information from references", "Something else"]
+  },
+  {
+    id: "l_q3",
+    text: "What do you currently do to decide whether a tenant is trustworthy?",
+    type: "checkbox",
+    options: ["Personal recommendation", "References", "Identity documents", "Previous landlord", "Employment/income information", "Agent recommendation", "Previous experience with the tenant", "Gut feeling", "Something else"]
+  },
+  {
+    id: "l_q4",
+    text: "Have you ever accepted a tenant and later discovered something you wish you had known beforehand?",
+    type: "radio",
+    options: ["Yes", "No"],
+    conditional: {
+      dependsOnOption: "Yes",
+      questionText: "What did you discover?"
+    }
+  },
+  {
+    id: "l_q5",
+    text: "What has caused you the most trouble during a tenancy?",
+    type: "radio",
+    options: ["Late or missed rent", "Property damage", "Maintenance", "Communication", "Utilities/bills", "Disputes", "Deposit", "Unauthorised changes/use", "Something else"]
+  },
+  {
+    id: "l_q6",
+    text: "When there is a disagreement, what evidence do you usually have?",
+    type: "radio",
+    options: ["Written agreement", "WhatsApp/messages", "Photos/videos", "Payment records", "Inspection records", "Witnesses", "Mostly verbal conversations", "Something else"]
+  },
+  {
+    id: "l_q7",
+    text: "Have you ever had difficulty proving what was agreed with a tenant?",
+    type: "radio",
+    options: ["Yes", "No", "Once or twice"],
+    conditional: {
+      dependsOnOption: "Yes",
+      questionText: "What was difficult to prove?"
+    }
+  },
+  {
+    id: "l_q8",
+    text: "Have you ever lost money because of a tenancy problem?",
+    type: "radio",
+    options: ["Yes", "No", "Not directly, but it cost significant time or stress"],
+    conditional: {
+      dependsOnOption: "Yes",
+      questionText: "What happened?"
+    }
+  },
+  {
+    id: "l_q9",
+    text: "How was the problem resolved?",
+    type: "radio",
+    options: ["We resolved it directly", "An agent helped", "Family/friends helped", "A lawyer or authority became involved", "I simply accepted the loss/problem", "It was never resolved", "Something else"]
+  },
+  {
+    id: "l_q10",
+    text: "After a tenant leaves, what information about that tenancy do you normally keep?",
+    type: "radio",
+    options: ["Agreement", "Payment records", "Inspection records", "Messages", "Photos/videos", "Maintenance history", "Almost nothing", "Something else"]
+  },
+  {
+    id: "l_q11",
+    text: "What makes you trust a tenant more than anything else?",
+    type: "shortText"
+  },
+  {
+    id: "l_q12",
+    text: "Before renting to someone new, what do you wish you could know with confidence?",
+    type: "shortText"
+  }
+];
+
+const agentQuestions = [
+  {
+    id: "a_q1",
+    text: "How long have you been involved in helping people rent property?",
+    type: "radio",
+    options: ["Less than 1 year", "1–3 years", "3–5 years", "5+ years"]
+  },
+  {
+    id: "a_q2",
+    text: "What is the hardest part of getting a rental deal from interest to agreement?",
+    type: "radio",
+    options: ["Finding serious tenants", "Proving the property is genuine", "Proving my own credibility", "Coordinating tenant and landlord", "Agreeing on terms", "Payments", "Documentation", "Resolving disagreements", "Something else"]
+  },
+  {
+    id: "a_q3",
+    text: "What do tenants usually need to trust you?",
+    type: "radio",
+    options: ["Referrals", "Your track record", "Agency affiliation", "Identification", "Property documents", "Meeting in person", "Online presence", "They mostly take a chance", "Something else"]
+  },
+  {
+    id: "a_q4",
+    text: "What do landlords usually need to trust a tenant?",
+    type: "checkbox",
+    options: ["Personal recommendation", "References", "Identity documents", "Previous landlord", "Employment/income information", "Agent recommendation", "Previous experience with the tenant", "Gut feeling", "Something else"]
+  },
+  {
+    id: "a_q5",
+    text: "What information do you most often have to verify manually?",
+    type: "radio",
+    options: ["Tenant identity", "Landlord identity", "Property information", "Payment information", "Agreements/documents", "References", "Nothing consistently", "Something else"]
+  },
+  {
+    id: "a_q6",
+    text: "Where do you usually keep records of a rental transaction?",
+    type: "radio",
+    options: ["WhatsApp", "Email", "Paper", "Spreadsheets", "Agency software", "Phone/device", "Bank/payment records", "Several places", "Mostly nowhere"]
+  },
+  {
+    id: "a_q7",
+    text: "Have you ever been caught between a tenant and landlord during a dispute?",
+    type: "radio",
+    options: ["Often", "Sometimes", "Once or twice", "Never"],
+    conditional: {
+      dependsOnNotOption: "Never", // Only if NOT never
+      questionText: "What was the dispute about?"
+    }
+  },
+  {
+    id: "a_q8",
+    text: "What usually makes those disputes difficult to resolve?",
+    type: "radio",
+    options: ["No clear agreement", "Missing evidence", "Different versions of events", "Payment records", "Property condition", "Communication", "Neither party trusts the other", "Something else"]
+  },
+  {
+    id: "a_q9",
+    text: "Have you ever lost a deal because one party did not trust the other?",
+    type: "radio",
+    options: ["Yes", "No", "Not sure"],
+    conditional: {
+      dependsOnOption: "Yes",
+      questionText: "What happened?"
+    }
+  },
+  {
+    id: "a_q10",
+    text: "How do you currently prove your credibility when meeting someone new?",
+    type: "shortText"
+  },
+  {
+    id: "a_q11",
+    text: "What part of managing a rental transaction takes more time than it should?",
+    type: "shortText"
+  },
+  {
+    id: "a_q12",
+    text: "What would make it easier for you to confidently introduce two people to each other?",
+    type: "shortText"
+  }
+];
+
+const finalQuestions = [
+  {
+    id: "f_q1",
+    text: "If you could change one thing about renting today, what would it be?",
+    type: "shortText"
+  },
+  {
+    id: "f_email",
+    text: "If you’re open to a follow-up conversation, leave your email.",
+    type: "email",
+    optional: true
+  }
+];
+
+console.log(JSON.stringify({ tenantQuestions, landlordQuestions, agentQuestions, finalQuestions }, null, 2));
