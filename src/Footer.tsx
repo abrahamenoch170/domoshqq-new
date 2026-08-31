@@ -1,9 +1,9 @@
-import { useWaitlist } from "./WaitlistContext";
+import { useNavigate, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Instagram, Linkedin, Mail } from 'lucide-react';
 
 export const Footer = () => {
-  const { openWaitlist } = useWaitlist();
+  const navigate = useNavigate();
   
   return (
     <footer className="w-full bg-[#F26522] p-4 md:p-8 lg:p-12 relative z-10 flex justify-center">
@@ -45,10 +45,10 @@ export const Footer = () => {
                 Quick Links
               </h4>
               <ul className="flex flex-col gap-4">
-                <li><a href="#product" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Product</a></li>
-                <li><a href="#share" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Share rental experience</a></li>
-                <li><button onClick={openWaitlist} className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Join waitlist</button></li>
-                <li><a href="#partner" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Partner with us</a></li>
+                <li><Link to="/#product" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Product</Link></li>
+                <li><Link to="/#share" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Share rental experience</Link></li>
+                <li><button onClick={() => navigate('/waitlist')} className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Join waitlist</button></li>
+                <li><Link to="/partner" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Partner with us</Link></li>
               </ul>
             </div>
             <div className="flex flex-col gap-5">
@@ -56,9 +56,9 @@ export const Footer = () => {
                 Company
               </h4>
               <ul className="flex flex-col gap-4">
-                <li><a href="#about" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">About</a></li>
-                <li><a href="#privacy" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Privacy</a></li>
-                <li><a href="#terms" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Terms</a></li>
+                <li><Link to="/#about" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">About</Link></li>
+                <li><Link to="/privacy" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Privacy</Link></li>
+                <li><Link to="/terms" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Terms</Link></li>
               </ul>
             </div>
           </div>
@@ -74,7 +74,7 @@ export const Footer = () => {
             
             <div className="flex flex-col gap-3 w-full mt-1">
               <button 
-                onClick={openWaitlist}
+                onClick={() => navigate('/waitlist')}
                 className="w-full bg-[#F26522] hover:bg-[#D1551A] text-white text-[15px] font-medium rounded-[8px] px-6 py-3 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 flex items-center justify-center gap-2 h-[48px]"
               >
                 Join Waitlist

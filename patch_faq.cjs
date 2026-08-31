@@ -1,5 +1,5 @@
 const fs = require('fs');
-let code = fs.readFileSync('src/Footer.tsx', 'utf-8');
+let code = fs.readFileSync('src/FaqSection.tsx', 'utf-8');
 
 // replace imports
 code = code.replace(/import \{ useWaitlist \} from "\.\/WaitlistContext";\n/, "import { useNavigate } from 'react-router-dom';\n");
@@ -10,4 +10,4 @@ code = code.replace(/const \{ openWaitlist \} = useWaitlist\(\);\n/, "const navi
 // replace onClick={openWaitlist}
 code = code.replace(/onClick=\{openWaitlist\}/g, "onClick={() => navigate('/waitlist')}");
 
-fs.writeFileSync('src/Footer.tsx', code);
+fs.writeFileSync('src/FaqSection.tsx', code);

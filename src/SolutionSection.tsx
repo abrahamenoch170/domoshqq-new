@@ -313,7 +313,7 @@ export const SolutionSection = () => {
   }, [activeIndex, isHovered]);
 
   return (
-    <section ref={sectionRef} className="bg-[#FFF5EB] py-24 md:py-32 lg:py-40 w-full overflow-hidden shrink-0">
+    <section id="solution" ref={sectionRef} className="bg-[#FFF5EB] py-24 md:py-32 lg:py-40 w-full overflow-hidden shrink-0">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mb-12 md:mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
         <div className="max-w-3xl">
           <h2 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[72px] font-extrabold tracking-tight mb-6 leading-[1.05]">
