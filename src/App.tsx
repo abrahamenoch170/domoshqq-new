@@ -1,6 +1,6 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { WaitlistPage } from "./WaitlistPage";
 import { PartnerPage } from "./PartnerPage";
 import { PrivacyPage } from "./PrivacyPage";
@@ -273,7 +273,8 @@ export default function App() {
         <Route path="/waitlist" element={<WaitlistPage />} />
         <Route path="/partner" element={<PartnerPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="/share" element={<SharePage />} />
+        <Route path="/share-rental-experience" element={<SharePage />} />
+        <Route path="/share" element={<Navigate to="/share-rental-experience" replace />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

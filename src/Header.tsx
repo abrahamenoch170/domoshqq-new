@@ -59,7 +59,7 @@ export const Header = () => {
     { label: 'About', href: '/#about' },
     { label: 'Privacy', href: '/privacy' },
     { label: 'Terms', href: '/terms' },
-    { label: 'Share Your Story', href: '/share' }
+    { label: 'Share Rental Experience', href: '/share-rental-experience' }
   ];
 
   return (

@@ -46,7 +46,7 @@ export const Footer = () => {
               </h4>
               <ul className="flex flex-col gap-4">
                 <li><Link to="/#product" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Product</Link></li>
-                <li><Link to="/#share" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Share rental experience</Link></li>
+                <li><Link to="/share-rental-experience" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Share Rental Experience</Link></li>
                 <li><button onClick={() => navigate('/waitlist')} className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Join waitlist</button></li>
                 <li><Link to="/partner" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Partner with us</Link></li>
               </ul>

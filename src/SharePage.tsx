@@ -224,7 +224,7 @@ export const SharePage = () => {
 
   return (
     <>
-      <SEO title="Share Your Rental Story — MyDomos Africa" description="Share your real rental experience anonymously and help us understand where trust breaks down across Africa's rental ecosystem." path="/share" />
+      <SEO title="Share Your Rental Experience — MyDomos Africa" description="Share your real rental experience anonymously and help us understand where trust breaks down across Africa's rental ecosystem." path="/share-rental-experience" />
       <div className="w-full bg-[#FFF5EB] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col">
       <Header />
       
@@ -266,7 +266,7 @@ export const SharePage = () => {
                   onClick={() => document.getElementById("survey-flow")?.scrollIntoView({ behavior: "smooth" })} 
                   className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-[#F26522] text-white text-[16px] font-semibold px-[36px] py-[16px] rounded-[100px] shadow-[0_8px_24px_rgba(242,101,34,0.25)] hover:bg-[#E55A1B] hover:shadow-[0_12px_32px_rgba(242,101,34,0.4)] hover:-translate-y-[2px] active:translate-y-[1px] active:shadow-[0_4px_12px_rgba(242,101,34,0.3)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F26522] focus:ring-offset-[#FFF8F0]"
                 >
-                  Share Your Story
+                  Share Your Experience
                 </button>
               </div>
             </div>
@@ -463,7 +463,7 @@ export const SharePage = () => {
                       : 'bg-[#1A1A1A]/10 text-[#1A1A1A]/40 cursor-not-allowed'
                   }`}
                 >
-                  {isSubmitting ? 'Sharing...' : currentStep === (questions.length - 1) ? 'Share My Story' : 'Continue'}
+                  {isSubmitting ? 'Sharing...' : currentStep === (questions.length - 1) ? 'Share My Experience' : 'Continue'}
                 </button>
               </div>
             </>
