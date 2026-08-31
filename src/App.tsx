@@ -110,29 +110,27 @@ const StoryCard = ({ align, statHighlight, statText, title, text, name, role, im
           transition: { delay: i * 0.15, duration: 0.6, ease: [0.32, 0.72, 0, 1] }
         })
       }}
-      className={`flex flex-col gap-2 w-full ${isRight ? 'items-end' : 'items-start'}`}
+      className={`flex flex-col gap-1.5 w-full ${isRight ? 'items-end' : 'items-start'}`}
     >
+      {/* Avatar and Name */}
+      <div className={`flex flex-col items-center mb-1 ${isRight ? 'mr-4' : 'ml-4'}`}>
+        <img src={image} alt={name} className="w-[36px] h-[36px] rounded-full object-cover shadow-sm" />
+        <div className="text-center mt-1 leading-[1.1]">
+          <div className="text-[12px] font-bold text-white">{name},</div>
+          <div className="text-[12px] font-medium text-white/80">{role}</div>
+        </div>
+      </div>
+
       {/* Stat Label */}
-      <div className="flex items-center gap-1.5 text-white/90 text-[13px] md:text-[14px]">
-        <TrendingUp className="w-[18px] h-[18px] text-white shrink-0" strokeWidth={2.5} />
+      <div className={`flex items-center gap-1.5 text-white/80 text-[13px] ${isRight ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
+        <TrendingUp className="w-[14px] h-[14px] text-white shrink-0" strokeWidth={2.5} />
         <span><strong className="text-white font-bold">{statHighlight}</strong> {statText}</span>
       </div>
 
       {/* Chat Bubble */}
-      <div className="bg-[#1A1A1A] text-white p-6 md:p-8 rounded-[24px] max-w-[340px] md:max-w-[420px] shadow-[0_12px_40px_rgba(0,0,0,0.15)] relative overflow-hidden">
-        <NoiseOverlay />
-        <div className="relative z-10 flex flex-col gap-3">
-          <span className="font-black text-[24px] md:text-[28px] leading-[1.4] text-[#FFF5EB] tracking-tight">{title}</span>
-          <span className="text-[18px] text-[#FFF5EB]/80 leading-relaxed font-medium">{text}</span>
-        </div>
-      </div>
-
-      {/* Avatar and Name */}
-      <div className={`flex flex-col items-center mt-1 ${isRight ? 'mr-4 md:mr-6' : 'ml-4 md:ml-6'}`}>
-        <img src={image} alt={name} className="w-10 h-10 rounded-full object-cover" />
-        <div className="text-center mt-1 leading-[1.2]">
-          <div className="text-[12px] font-bold text-white">{name},</div>
-          <div className="text-[12px] font-medium text-white/80">{role}</div>
+      <div className={`bg-[#1A1A1A] text-white p-4 md:p-5 rounded-[20px] max-w-[280px] md:max-w-[340px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] relative overflow-hidden ${isRight ? 'rounded-tr-sm' : 'rounded-tl-sm'}`}>
+        <div className="relative z-10 text-[13.5px] md:text-[14px] leading-[1.6]">
+          <strong className="font-bold text-white">{title}</strong> <span className="text-white/85">{text}</span>
         </div>
       </div>
     </motion.div>
@@ -140,30 +138,9 @@ const StoryCard = ({ align, statHighlight, statText, title, text, name, role, im
 };
 
 const BetrayalSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start center", "end center"]
-  });
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
   return (
-    <section ref={ref} className="relative w-full bg-[#F26522] pt-[40px] pb-[80px] flex flex-col items-center">
-      <div className="w-full max-w-[640px] mx-auto px-6 flex flex-col gap-10">
-
-        {/* The Problem Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
-          className="flex flex-col items-center text-center mb-4 md:mb-6 max-w-[480px] mx-auto gap-4"
-        >
-          <span className="text-white/80 text-[15px] font-medium">The Problem</span>
-          <h2 className="text-[26px] md:text-[32px] font-bold text-white leading-[1.3] tracking-tight">
-            Renting across Africa is broken. These systemic issues affect tenants, landlords, and agents every day.
-          </h2>
-        </motion.div>
+    <section id="problem" className="relative w-full bg-[#F26522] pt-[60px] pb-[80px] md:pt-[100px] md:pb-[120px] flex flex-col items-center overflow-hidden">
+      <div className="w-full max-w-[560px] mx-auto px-6 flex flex-col gap-10 md:gap-12 relative">
 
         <StoryCard
           align="left"
@@ -189,10 +166,41 @@ const BetrayalSection = () => {
           index={1}
         />
 
+        {/* The Problem Section */}
+        <div className="relative w-full flex flex-col items-center my-6 md:my-10">
+          {/* Segun Avatar on the far left of the column */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center ml-4"
+          >
+            <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=150&q=80" alt="Segun" className="w-[36px] h-[36px] rounded-full object-cover shadow-sm" />
+            <div className="text-center mt-1 leading-[1.1]">
+              <div className="text-[12px] font-bold text-white">Segun,</div>
+              <div className="text-[12px] font-medium text-white/80">Tenant</div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+            className="flex flex-col items-center text-center max-w-[340px] md:max-w-[420px] mx-auto gap-3 pl-[50px] pr-2 md:pl-0"
+          >
+            <span className="text-white/80 text-[16px] font-medium">The Problem</span>
+            <h2 className="text-[24px] md:text-[28px] font-bold text-white leading-[1.35] tracking-tight">
+              Renting across Africa is broken. These systemic issues affect tenants, landlords, and agents every day.
+            </h2>
+          </motion.div>
+        </div>
+
         <StoryCard
           align="left"
           statHighlight="80%+"
-          statText="of African rentals lack written agreements"
+          statText="of African rentals lack written"
           title="Poor Documentation;"
           text="Agreements live in WhatsApp chats and paper receipts, mostly difficult to produce as soon as disputes occurs."
           name="David"
@@ -223,15 +231,6 @@ const BetrayalSection = () => {
           role="Agent"
           image="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=150&q=80"
           index={4}
-        />
-
-      </div>
-      
-      {/* Scroll Progress Bar */}
-      <div className="sticky bottom-0 left-0 w-full h-1.5 md:h-2 bg-[#1A1A1A]/10 mt-16 z-50">
-        <motion.div 
-          className="h-full bg-[#1A1A1A] origin-left" 
-          style={{ scaleX }} 
         />
       </div>
     </section>

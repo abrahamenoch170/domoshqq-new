@@ -1,4 +1,6 @@
-import React from 'react';
+const fs = require('fs');
+
+const content = `import React from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Link } from 'react-router-dom';
@@ -11,7 +13,7 @@ export const NotFoundPage = () => {
         title="Page Not Found — MyDomos Africa" 
         description="The page you are looking for does not exist."
       />
-      <div className="w-full bg-\[#FFF5EB\] selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col font-sans">
+      <div className="w-full bg-white selection:bg-[#F26522]/20 selection:text-[#1A1A1A] min-h-screen flex flex-col font-sans">
         <Header />
         
         <main className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-[120px] pb-24 md:pt-[140px] md:pb-32 relative z-10 w-full max-w-[800px] mx-auto">
@@ -94,3 +96,6 @@ export const NotFoundPage = () => {
     </>
   );
 };
+`;
+
+fs.writeFileSync('src/NotFoundPage.tsx', content);
