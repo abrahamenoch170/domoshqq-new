@@ -118,14 +118,14 @@ export const FaqSection = () => {
         </p>
 
         <div className="flex flex-col w-full max-w-[300px] gap-4">
-          <button onClick={() => navigate('/waitlist')} className="w-full bg-[#F26522] hover:bg-[#D1551A] text-white text-[14px] font-medium rounded-lg px-6 py-4 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 flex items-center justify-center gap-2">
+          <button onClick={() => navigate('/waitlist')} className="w-full bg-[#F26522] hover:bg-[#D1551A] text-white text-[14px] font-medium rounded-[100px] px-[32px] py-[16px] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 flex items-center justify-center gap-2">
             Join Waitlist
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
           
-          <button onClick={() => navigate('/partner')} className="w-full bg-white border border-[#1A1A1A]/15 hover:border-[#1A1A1A]/30 text-[#1A1A1A] text-[14px] font-medium rounded-lg px-6 py-4 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] focus:ring-offset-2 flex items-center justify-center gap-2">
+          <button onClick={() => navigate('/partner')} className="w-full bg-white border border-[#1A1A1A]/15 hover:border-[#1A1A1A]/30 text-[#1A1A1A] text-[14px] font-medium rounded-[100px] px-[32px] py-[16px] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] focus:ring-offset-2 flex items-center justify-center gap-2">
             Partner With Us
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

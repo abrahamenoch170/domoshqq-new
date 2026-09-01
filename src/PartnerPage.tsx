@@ -282,7 +282,7 @@ export const PartnerPage = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-[52px] bg-[#F26522] hover:bg-[#D1551A] text-white text-[16px] font-semibold rounded-lg px-6 mt-2 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 flex items-center justify-center disabled:opacity-70"
+                  className="w-full h-[52px] bg-[#F26522] hover:bg-[#D1551A] text-white text-[16px] font-semibold rounded-[100px] px-6 mt-2 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 flex items-center justify-center disabled:opacity-70"
                 >
                   {isSubmitting ? 'Sending...' : 'Start a Conversation'}
                 </button>

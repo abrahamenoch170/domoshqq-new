@@ -75,7 +75,7 @@ export const Footer = () => {
             <div className="flex flex-col gap-3 w-full mt-1">
               <button 
                 onClick={() => navigate('/waitlist')}
-                className="w-full bg-[#F26522] hover:bg-[#D1551A] text-white text-[15px] font-medium rounded-[8px] px-6 py-3 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 flex items-center justify-center gap-2 h-[48px]"
+                className="w-full bg-[#F26522] hover:bg-[#D1551A] text-white text-[15px] font-medium rounded-[100px] px-[24px] py-[14px] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 flex items-center justify-center gap-2 h-[48px]"
               >
                 Join Waitlist
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -293,7 +293,7 @@ export const WaitlistPage = () => {
               <button
                 onClick={handleBack}
                 disabled={isSubmitting}
-                className="w-full sm:w-auto h-[52px] px-6 text-[#1A1A1A]/60 hover:text-[#1A1A1A] font-medium text-[16px] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] rounded-lg flex items-center justify-center disabled:opacity-50"
+                className="w-full sm:w-auto h-[52px] px-6 text-[#1A1A1A]/60 hover:text-[#1A1A1A] font-medium text-[16px] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1A1A1A] rounded-[100px] flex items-center justify-center disabled:opacity-50"
               >
                 Back
               </button>
@@ -303,7 +303,7 @@ export const WaitlistPage = () => {
               <button
                 onClick={handleNext}
                 disabled={isSubmitting}
-                className={`w-full ${step > 1 ? 'sm:flex-1' : ''} h-[52px] bg-[#F26522] hover:bg-[#D1551A] text-white text-[16px] font-medium rounded-lg px-8 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 focus:ring-offset-[#FFF5EB] flex items-center justify-center disabled:opacity-70`}
+                className={`w-full ${step > 1 ? 'sm:flex-1' : ''} h-[52px] bg-[#F26522] hover:bg-[#D1551A] text-white text-[16px] font-medium rounded-[100px] px-8 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#F26522] focus:ring-offset-2 focus:ring-offset-[#FFF5EB] flex items-center justify-center disabled:opacity-70`}
               >
                 {isSubmitting ? 'Joining...' : (step === 4 ? 'Join the Waitlist' : 'Continue')}
               </button>

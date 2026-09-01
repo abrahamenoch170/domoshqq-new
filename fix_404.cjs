@@ -1,4 +1,6 @@
-import React from 'react';
+const fs = require('fs');
+
+const content = `import React from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { Link } from 'react-router-dom';
@@ -43,3 +45,7 @@ export const NotFoundPage = () => {
     </>
   );
 };
+`;
+
+fs.writeFileSync('src/NotFoundPage.tsx', content);
+console.log("Fixed 404 page.");
