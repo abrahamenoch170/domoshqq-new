@@ -123,7 +123,7 @@ const StoryCard = ({ align, statHighlight, statText, title, text, name, role, im
 
       {/* Stat Label */}
       <div className={`flex items-center gap-1.5 text-white/80 text-[13px] ${isRight ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <TrendingUp className="w-[14px] h-[14px] text-white shrink-0" strokeWidth={2.5} />
         <span><strong className="text-white font-bold">{statHighlight}</strong> {statText}</span>
       </div>
 
@@ -144,7 +144,7 @@ const BetrayalSection = () => {
 
         <StoryCard
           align="left"
-          statHighlight="Financial Risk" statText=""
+          statHighlight="Unknown" statText="hidden debt transferred yearly"
           title="Hidden Liabilities;"
           text="Tenants inherit unexpected liabilities like outstanding electricity bills after signing and moving in."
           name="Mazi"
@@ -155,7 +155,7 @@ const BetrayalSection = () => {
 
         <StoryCard
           align="right"
-          statHighlight="Verification Gap" statText=""
+          statHighlight="40%+" statText="of rentals involve deception"
           title="Rental Fraud;"
           text="Money changes hands before anyone can confirm who actually owns, manages, or has the right to let the property."
           name="Kofi"
@@ -197,7 +197,7 @@ const BetrayalSection = () => {
 
         <StoryCard
           align="left"
-          statHighlight="Documentation Failure" statText=""
+          statHighlight="80%+" statText="of African rentals lack written"
           title="Poor Documentation;"
           text="Agreements live in WhatsApp chats and paper receipts, mostly difficult to produce as soon as disputes occurs."
           name="David"
@@ -208,7 +208,7 @@ const BetrayalSection = () => {
 
         <StoryCard
           align="right"
-          statHighlight="Power Imbalance" statText=""
+          statHighlight="75%+" statText="of tenants fall victim yearly"
           title="Illegal & Unfair clauses;"
           text="Leases are drafted once, signed under pressure and rarely reviewed by anyone besides who wrote them."
           name="Zuri"
@@ -219,7 +219,7 @@ const BetrayalSection = () => {
 
         <StoryCard
           align="left"
-          statHighlight="Lack of Accountability" statText=""
+          statHighlight="70%+" statText="of disputes involve agents"
           title="Fake Agents;"
           text="Anyone can claim to be an agent. Few can prove it and tenants have no shared registry to check against."
           name="Hassan"
