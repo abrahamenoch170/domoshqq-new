@@ -17,10 +17,10 @@ const CardOne = () => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+    className="solution-card snap-center shrink-0 w-[88vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] max-w-[1000px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[32px] md:rounded-[44px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[420px] md:min-h-[480px] lg:min-h-[520px] p-6 sm:p-8 md:p-10 lg:p-12 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
-    <div className="absolute top-[-5%] right-[-5%] text-[280px] md:text-[400px] lg:text-[500px] font-bold text-[#1A1A1A]/[0.06] leading-none tracking-tighter pointer-events-none select-none z-0">
+    <div className="absolute top-[-5%] right-[-5%] text-[140px] md:text-[240px] lg:text-[320px] font-bold text-[#1A1A1A]/[0.06] leading-none tracking-tighter pointer-events-none select-none z-0">
       01
     </div>
     
@@ -33,11 +33,11 @@ const CardOne = () => (
     {/* Content */}
     <div className="relative z-10 flex flex-col h-full justify-between">
       <div>
-        <span className="inline-block text-[#FFF5EB] text-[13px] font-bold tracking-[0.3em] uppercase mb-6 md:mb-10">Before</span>
-        <h3 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight max-w-xl mb-8 md:mb-12">
+        <span className="inline-block text-[#FFF5EB] text-[12px] font-bold tracking-[0.25em] uppercase mb-3 md:mb-6">Before</span>
+        <h3 className="text-[#1A1A1A] text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-[1.08] tracking-tight max-w-xl mb-4 md:mb-6">
           Know who is on the other side
         </h3>
-        <div className="flex flex-col gap-4 max-w-lg text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8]">
+        <div className="flex flex-col gap-2 md:gap-3 max-w-lg text-[#1A1A1A]/85 text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium leading-[1.55]">
           <p>You found a flat.</p>
           <p>The agent seems fine.</p>
           <p>The landlord exists somewhere.</p>
@@ -46,8 +46,8 @@ const CardOne = () => (
         </div>
       </div>
       
-      <div className="mt-14 md:mt-24 pt-8 md:pt-10 border-t-2 border-[#1A1A1A]/10 max-w-2xl">
-        <p className="text-[#FFF5EB] text-[24px] md:text-[32px] lg:text-[36px] font-semibold leading-[1.3] tracking-tight italic pr-4">
+      <div className="mt-6 md:mt-10 pt-4 md:pt-6 border-t-2 border-[#1A1A1A]/10 max-w-2xl">
+        <p className="text-[#FFF5EB] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] font-semibold leading-[1.3] tracking-tight italic pr-4">
           What if you could see who you were dealing with before you paid?
         </p>
       </div>
@@ -61,10 +61,10 @@ const CardTwo = () => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+    className="solution-card snap-center shrink-0 w-[88vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] max-w-[1000px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[32px] md:rounded-[44px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[420px] md:min-h-[480px] lg:min-h-[520px] p-6 sm:p-8 md:p-10 lg:p-12 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
-    <div className="absolute bottom-[-10%] left-[-5%] text-[280px] md:text-[400px] lg:text-[500px] font-bold text-[#FFF5EB]/[0.08] leading-none tracking-tighter pointer-events-none select-none z-0">
+    <div className="absolute bottom-[-10%] left-[-5%] text-[140px] md:text-[240px] lg:text-[320px] font-bold text-[#FFF5EB]/[0.08] leading-none tracking-tighter pointer-events-none select-none z-0">
       02
     </div>
     
@@ -77,14 +77,14 @@ const CardTwo = () => (
 
     {/* Content */}
     <div className="relative z-10 flex flex-col h-full justify-between">
-      <div className="flex flex-col xl:flex-row gap-10 xl:gap-20 justify-between items-start">
+      <div className="flex flex-col xl:flex-row gap-6 xl:gap-14 justify-between items-start">
         <div className="flex-1 max-w-xl">
-          <span className="inline-block text-[#1A1A1A] text-[13px] font-bold tracking-[0.3em] uppercase mb-6 md:mb-10">Before</span>
-          <h3 className="text-[#FFF5EB] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight">
+          <span className="inline-block text-[#1A1A1A] text-[12px] font-bold tracking-[0.25em] uppercase mb-3 md:mb-6">Before</span>
+          <h3 className="text-[#FFF5EB] text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-[1.08] tracking-tight">
             See the place before you live there
           </h3>
         </div>
-        <div className="flex-1 max-w-lg flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8] xl:pt-16">
+        <div className="flex-1 max-w-lg flex flex-col gap-2 md:gap-3 text-[#1A1A1A]/85 text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium leading-[1.55] xl:pt-8">
           <p>The place looked perfect.</p>
           <p>The street was quiet when you visited.</p>
           <p>But nobody told you the road floods every August.</p>
@@ -93,8 +93,8 @@ const CardTwo = () => (
         </div>
       </div>
 
-      <div className="mt-14 md:mt-24 self-start xl:self-end max-w-xl xl:text-right border-l-4 xl:border-l-0 xl:border-r-4 border-[#FFF5EB] pl-6 xl:pl-0 xl:pr-6">
-        <p className="text-[#1A1A1A] text-[24px] md:text-[32px] lg:text-[36px] font-semibold leading-[1.3] tracking-tight italic">
+      <div className="mt-6 md:mt-10 self-start xl:self-end max-w-xl xl:text-right border-l-4 xl:border-l-0 xl:border-r-4 border-[#FFF5EB] pl-4 md:pl-6 xl:pl-0 xl:pr-6">
+        <p className="text-[#1A1A1A] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] font-semibold leading-[1.3] tracking-tight italic">
           What if the neighbourhood could tell you what the listing never did?
         </p>
       </div>
@@ -108,10 +108,10 @@ const CardThree = () => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+    className="solution-card snap-center shrink-0 w-[88vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] max-w-[1000px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[32px] md:rounded-[44px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[420px] md:min-h-[480px] lg:min-h-[520px] p-6 sm:p-8 md:p-10 lg:p-12 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[400px] lg:text-[700px] font-bold text-[#1A1A1A]/[0.04] leading-none tracking-tighter pointer-events-none select-none z-0 flex items-center justify-center w-full h-full">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[160px] md:text-[260px] lg:text-[340px] font-bold text-[#1A1A1A]/[0.04] leading-none tracking-tighter pointer-events-none select-none z-0 flex items-center justify-center w-full h-full">
       03
     </div>
     
@@ -123,20 +123,20 @@ const CardThree = () => (
     </div>
 
     {/* Content */}
-    <div className="relative z-10 flex flex-col xl:flex-row h-full w-full gap-12 xl:gap-24 items-start xl:items-center">
+    <div className="relative z-10 flex flex-col xl:flex-row h-full w-full gap-8 xl:gap-16 items-start xl:items-center">
       <div className="flex-1 w-full flex flex-col h-full justify-between xl:justify-center">
         <div>
-          <span className="inline-block text-[#FFF5EB] text-[13px] font-bold tracking-[0.3em] uppercase mb-6 md:mb-10">During</span>
-          <h3 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight mb-8">
+          <span className="inline-block text-[#FFF5EB] text-[12px] font-bold tracking-[0.25em] uppercase mb-3 md:mb-6">During</span>
+          <h3 className="text-[#1A1A1A] text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-[1.08] tracking-tight mb-4 md:mb-6">
             Your payments should leave a record
           </h3>
         </div>
-        <p className="text-[#FFF5EB] text-[24px] md:text-[32px] lg:text-[36px] font-semibold leading-[1.3] tracking-tight italic mt-10 xl:mt-24 pt-8 xl:pt-12 border-t-2 border-[#FFF5EB]/20 hidden xl:block">
+        <p className="text-[#FFF5EB] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] font-semibold leading-[1.3] tracking-tight italic mt-6 xl:mt-12 pt-4 xl:pt-6 border-t-2 border-[#FFF5EB]/20 hidden xl:block">
           What if every payment came with a clear record that both sides could see?
         </p>
       </div>
 
-      <div className="flex-1 w-full flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8] max-w-lg">
+      <div className="flex-1 w-full flex flex-col gap-2 md:gap-3 text-[#1A1A1A]/85 text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium leading-[1.55] max-w-lg">
         <p>You paid the deposit.</p>
         <p>Then the rent.</p>
         <p>Then the agency fee.</p>
@@ -146,7 +146,7 @@ const CardThree = () => (
       </div>
       
       {/* Mobile only question */}
-      <p className="text-[#FFF5EB] text-[24px] md:text-[32px] font-semibold leading-[1.3] tracking-tight italic mt-6 pt-8 border-t border-[#FFF5EB]/20 xl:hidden">
+      <p className="text-[#FFF5EB] text-[16px] sm:text-[18px] font-semibold leading-[1.3] tracking-tight italic mt-4 pt-4 border-t border-[#FFF5EB]/20 xl:hidden">
         What if every payment came with a clear record that both sides could see?
       </p>
     </div>
@@ -159,10 +159,10 @@ const CardFour = () => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+    className="solution-card snap-center shrink-0 w-[88vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] max-w-[1000px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[32px] md:rounded-[44px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[420px] md:min-h-[480px] lg:min-h-[520px] p-6 sm:p-8 md:p-10 lg:p-12 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
-    <div className="absolute top-[5%] left-[5%] text-[280px] md:text-[400px] lg:text-[500px] font-bold text-[#FFF5EB]/[0.08] leading-none tracking-tighter pointer-events-none select-none z-0">
+    <div className="absolute top-[5%] left-[5%] text-[140px] md:text-[240px] lg:text-[320px] font-bold text-[#FFF5EB]/[0.08] leading-none tracking-tighter pointer-events-none select-none z-0">
       04
     </div>
     
@@ -176,13 +176,13 @@ const CardFour = () => (
 
     {/* Content */}
     <div className="relative z-10 w-full h-full flex flex-col justify-between">
-      <div className="flex flex-col xl:flex-row gap-10 xl:gap-24 justify-end">
+      <div className="flex flex-col xl:flex-row gap-6 xl:gap-14 justify-end">
         <div className="flex-1 max-w-lg xl:order-2">
-          <span className="inline-block text-[#1A1A1A] text-[13px] font-bold tracking-[0.3em] uppercase mb-6 md:mb-10">During</span>
-          <h3 className="text-[#FFF5EB] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight mb-8">
+          <span className="inline-block text-[#1A1A1A] text-[12px] font-bold tracking-[0.25em] uppercase mb-3 md:mb-6">During</span>
+          <h3 className="text-[#FFF5EB] text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-[1.08] tracking-tight mb-4 md:mb-6">
             Your home should remember what happened
           </h3>
-          <div className="flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8]">
+          <div className="flex flex-col gap-2 md:gap-3 text-[#1A1A1A]/85 text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium leading-[1.55]">
             <p>The tap started leaking.</p>
             <p>You sent a message.</p>
             <p>Then another.</p>
@@ -194,9 +194,9 @@ const CardFour = () => (
         </div>
       </div>
 
-      <div className="mt-14 md:mt-20 max-w-2xl xl:order-1">
-        <div className="pl-6 md:pl-8 border-l-4 border-[#1A1A1A]">
-          <p className="text-[#1A1A1A] text-[24px] md:text-[32px] lg:text-[36px] font-semibold leading-[1.3] tracking-tight italic">
+      <div className="mt-6 md:mt-10 max-w-2xl xl:order-1">
+        <div className="pl-4 md:pl-6 border-l-4 border-[#1A1A1A]">
+          <p className="text-[#1A1A1A] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] font-semibold leading-[1.3] tracking-tight italic">
             What if every request, repair, and agreement stayed in one clear place?
           </p>
         </div>
@@ -211,10 +211,10 @@ const CardFive = () => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-    className="solution-card snap-center shrink-0 w-[90vw] md:w-[75vw] lg:w-[65vw] max-w-[1200px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[40px] md:rounded-[60px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[600px] md:min-h-[720px] p-8 md:p-16 lg:p-24 border border-[#FFF5EB]/10">
+    className="solution-card snap-center shrink-0 w-[88vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] max-w-[1000px] bg-gradient-to-br from-[#F26522] to-[#E35415] rounded-[32px] md:rounded-[44px] shadow-[inset_0_2px_10px_rgba(255,255,255,0.3),_0_20px_50px_rgba(0,0,0,0.08),_0_40px_100px_rgba(242,101,34,0.15)] relative overflow-hidden flex flex-col min-h-[420px] md:min-h-[480px] lg:min-h-[520px] p-6 sm:p-8 md:p-10 lg:p-12 border border-[#FFF5EB]/10">
     <Noise />
     {/* Giant Number */}
-    <div className="absolute bottom-[-15%] right-[-5%] text-[280px] md:text-[500px] lg:text-[600px] font-bold text-[#1A1A1A]/[0.05] leading-none tracking-tighter pointer-events-none select-none z-0">
+    <div className="absolute bottom-[-15%] right-[-5%] text-[140px] md:text-[240px] lg:text-[320px] font-bold text-[#1A1A1A]/[0.05] leading-none tracking-tighter pointer-events-none select-none z-0">
       05
     </div>
     
@@ -230,12 +230,12 @@ const CardFive = () => (
 
     {/* Content */}
     <div className="relative z-10 w-full h-full flex flex-col justify-between items-center text-center">
-      <div className="flex flex-col items-center max-w-2xl mx-auto w-full xl:pt-10">
-        <span className="inline-block text-[#FFF5EB] text-[13px] font-bold tracking-[0.3em] uppercase mb-6 md:mb-10">After</span>
-        <h3 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[64px] font-extrabold leading-[1.05] tracking-tight mb-8 md:mb-10">
+      <div className="flex flex-col items-center max-w-2xl mx-auto w-full xl:pt-4">
+        <span className="inline-block text-[#FFF5EB] text-[12px] font-bold tracking-[0.25em] uppercase mb-3 md:mb-6">After</span>
+        <h3 className="text-[#1A1A1A] text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] font-extrabold leading-[1.08] tracking-tight mb-4 md:mb-6">
           Your good rental history should follow you
         </h3>
-        <div className="flex flex-col gap-4 text-[#1A1A1A]/85 text-[20px] md:text-[24px] lg:text-[26px] font-medium leading-[1.7] lg:leading-[1.8]">
+        <div className="flex flex-col gap-2 md:gap-3 text-[#1A1A1A]/85 text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] font-medium leading-[1.55]">
           <p>You paid on time.</p>
           <p>You took care of the place.</p>
           <p>You left it better than you found it.</p>
@@ -245,8 +245,8 @@ const CardFive = () => (
         </div>
       </div>
 
-      <div className="mt-14 md:mt-24 w-full max-w-4xl mx-auto z-10 relative">
-        <p className="text-[#FFF5EB] text-[22px] md:text-[32px] lg:text-[36px] font-semibold leading-[1.3] tracking-tight italic bg-[#1A1A1A] p-8 md:p-12 lg:p-14 rounded-[32px] md:rounded-[48px] shadow-2xl text-left md:text-center border border-[#1A1A1A]">
+      <div className="mt-6 md:mt-10 w-full max-w-3xl mx-auto z-10 relative">
+        <p className="text-[#FFF5EB] text-[15px] sm:text-[18px] md:text-[22px] lg:text-[24px] font-semibold leading-[1.3] tracking-tight italic bg-[#1A1A1A] p-5 sm:p-6 md:p-8 rounded-[20px] md:rounded-[28px] shadow-xl text-left md:text-center border border-[#1A1A1A]">
           What if the trust you earned could follow you to your next home?
         </p>
       </div>
@@ -313,24 +313,24 @@ export const SolutionSection = () => {
   }, [activeIndex, isHovered]);
 
   return (
-    <section id="solution" ref={sectionRef} className="bg-[#FFF5EB] py-24 md:py-32 lg:py-40 w-full overflow-hidden shrink-0">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mb-12 md:mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-        <div className="max-w-3xl">
-          <h2 className="text-[#1A1A1A] text-[40px] md:text-[56px] lg:text-[72px] font-extrabold tracking-tight mb-6 leading-[1.05]">
+    <section id="solution" ref={sectionRef} className="bg-[#FFF5EB] py-14 md:py-20 lg:py-24 w-full overflow-hidden shrink-0">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 mb-8 md:mb-14 flex flex-col lg:flex-row lg:items-end justify-between gap-6 md:gap-10">
+        <div className="max-w-2xl">
+          <h2 className="text-[#1A1A1A] text-[30px] sm:text-[38px] md:text-[46px] lg:text-[54px] font-extrabold tracking-tight mb-3 md:mb-4 leading-[1.1]">
             A Better Way to Rent
           </h2>
-          <p className="text-[#1A1A1A]/80 text-[18px] md:text-[22px] lg:text-[24px] font-medium leading-[1.6] max-w-2xl">
+          <p className="text-[#1A1A1A]/80 text-[15px] sm:text-[16px] md:text-[18px] lg:text-[19px] font-medium leading-[1.55] max-w-2xl">
             Renting should not mean guessing who to trust, where your money went, or what happens next. MyDomos Africa changes that.
           </p>
         </div>
         
         {/* Progress Indicators */}
-        <div className="flex gap-3 shrink-0 pb-3">
+        <div className="flex gap-2.5 shrink-0 pb-2">
           {[0, 1, 2, 3, 4].map((i) => (
             <button
               key={i}
               onClick={() => scrollToIndex(i)}
-              className="relative h-1.5 w-12 md:w-16 bg-[#1A1A1A]/10 rounded-full overflow-hidden cursor-pointer"
+              className="relative h-1.5 w-10 md:w-14 bg-[#1A1A1A]/10 rounded-full overflow-hidden cursor-pointer"
               aria-label={`Go to slide ${i + 1}`}
             >
               {activeIndex === i && !isHovered && (
@@ -353,7 +353,7 @@ export const SolutionSection = () => {
       <motion.div
         style={{ y: yParallax, scrollBehavior: "smooth" }}
         ref={scrollRef}
-        className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-24 pt-4 px-6 md:px-[10vw] lg:px-[15vw] gap-6 md:gap-10 lg:gap-14"
+        className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-12 pt-2 px-6 md:px-[10vw] lg:px-[15vw] gap-5 md:gap-8 lg:gap-10"
         
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

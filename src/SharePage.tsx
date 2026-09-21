@@ -24,11 +24,11 @@ interface Question {
 
 const tenantQuestions: Question[] = [
   { id: "t_q1", text: "When was the last time you rented a place?", type: "radio", options: ["Within the last 3 months", "3–12 months ago", "1–3 years ago", "More than 3 years ago"] },
-  { id: "t_q2", text: "What was the hardest part of finding the place?", type: "radio", options: ["Knowing which listings or people to trust", "Knowing whether the property was genuine", "Understanding the true cost", "Knowing whether the landlord/agent was legitimate", "Getting enough information about the property", "Dealing with agents or intermediaries", "Something else"], optionalShortResponse: "Tell us what happened." },
+  { id: "t_q2", text: "What was the hardest part of finding the place?", type: "checkbox", options: ["Knowing which listings or people to trust", "Knowing whether the property was genuine", "Understanding the true cost", "Knowing whether the landlord/agent was legitimate", "Getting enough information about the property", "Dealing with agents or intermediaries", "Something else"] },
   { id: "t_q3", text: "Before you paid anything, what did you actually know about the person you were dealing with?", type: "radio", options: ["I knew them personally", "Someone I trusted referred them", "I checked them myself", "The agent/platform gave me some confidence", "I mostly relied on what they told me", "I knew very little"] },
   { id: "t_q4", text: "What made you decide it was safe enough to move forward?", type: "checkbox", options: ["Recommendation from someone I trusted", "Seeing the property", "Speaking with the landlord", "Speaking with the agent", "Documents or proof shown to me", "Previous experience with the person", "I had no better option", "Something else"] },
   { id: "t_q5", text: "Did anything turn out to be different from what you were told before you paid or moved in?", type: "radio", options: ["Yes", "No", "Not sure"], conditional: { dependsOnOption: "Yes", questionText: "What was different?" } },
-  { id: "t_q6", text: "During the tenancy, what caused the most friction?", type: "radio", options: ["Repairs or maintenance", "Rent or payment issues", "Deposit", "Utilities or bills", "Communication", "Agreement or promises", "Property condition", "Privacy/access", "Nothing significant", "Something else"] },
+  { id: "t_q6", text: "During the tenancy, what caused the most friction?", type: "checkbox", options: ["Repairs or maintenance", "Rent or payment issues", "Deposit", "Utilities or bills", "Communication", "Agreement or promises", "Property condition", "Privacy/access", "Nothing significant", "Something else"] },
   { id: "t_q7", text: "When something went wrong, where did the record of what happened live?", type: "radio", options: ["WhatsApp/messages", "Email", "Paper documents", "Bank/payment records", "Photos/videos", "I kept my own notes", "There was no proper record", "Somewhere else"] },
   { id: "t_q8", text: "Did you ever need to prove what had happened during the rental?", type: "radio", options: ["Yes", "No", "Almost"], conditional: { dependsOnOption: "Yes", questionText: "What were you trying to prove?" } },
   { id: "t_q9", text: "Have you ever lost money because of a rental problem?", type: "radio", options: ["Yes", "No", "Not directly, but it cost me significant time or stress"], conditional: { dependsOnOption: "Yes", questionText: "What happened?" } },
@@ -205,6 +205,21 @@ export const SharePage = () => {
     return false;
   };
 
+  // Check if "Something else" or "Somewhere else" is selected
+  const isSomethingElseSelected = () => {
+    if (!currentQuestion) return false;
+    const ans = answers[currentQuestion.id];
+    if (currentQuestion.type === 'checkbox') {
+      return Array.isArray(ans) && ans.some((opt: string) => 
+        typeof opt === 'string' && (opt.toLowerCase().includes('something else') || opt.toLowerCase().includes('somewhere else'))
+      );
+    }
+    if (currentQuestion.type === 'radio') {
+      return typeof ans === 'string' && (ans.toLowerCase().includes('something else') || ans.toLowerCase().includes('somewhere else'));
+    }
+    return false;
+  };
+
   const variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 20 : -20,
@@ -361,6 +376,12 @@ export const SharePage = () => {
                         {currentQuestion.optional && <span className="text-[#1A1A1A]/40 text-[18px] ml-2 font-normal">(Optional)</span>}
                       </h2>
 
+                      {currentQuestion.type === 'checkbox' && (
+                        <p className="text-[14px] text-[#1A1A1A]/60 -mt-3 mb-1">
+                          Select all that apply
+                        </p>
+                      )}
+
                       {currentQuestion.type === 'radio' && currentQuestion.options && (
                         <div className="flex flex-col gap-3">
                           {currentQuestion.options.map(opt => (
@@ -387,8 +408,29 @@ export const SharePage = () => {
                         </div>
                       )}
 
+                      {/* If "Something else" or "Somewhere else" is selected, provide a space for them to type what it is out */}
+                      {isSomethingElseSelected() && (
+                        <motion.div 
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                          animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                          transition={{ duration: 0.25, ease: "easeOut" }}
+                          className="flex flex-col gap-2 overflow-hidden"
+                        >
+                          <label className="text-[15px] font-medium text-[#1A1A1A]">
+                            Please tell us what it was:
+                          </label>
+                          <textarea
+                            value={answers[`${currentQuestion.id}_something_else`] || ''}
+                            onChange={(e) => handleAnswerChange(`${currentQuestion.id}_something_else`, e.target.value)}
+                            placeholder="Type what happened or what it was here..."
+                            className="w-full min-h-[100px] p-4 rounded-xl border-[1.5px] border-[#1A1A1A]/15 bg-white text-[#1A1A1A] placeholder-[#1A1A1A]/30 focus:outline-none focus:border-[#F26522] focus:ring-1 focus:ring-[#F26522] resize-y transition-colors text-[16px]"
+                          />
+                        </motion.div>
+                      )}
+
                       {/* Optional short response under radio/checkbox */}
-                      {currentQuestion.optionalShortResponse && (
+                      {currentQuestion.optionalShortResponse && !isSomethingElseSelected() && (
                         <div className="mt-4 flex flex-col gap-2">
                           <label className="text-[15px] font-medium text-[#1A1A1A]/70">{currentQuestion.optionalShortResponse} (Optional)</label>
                           <textarea

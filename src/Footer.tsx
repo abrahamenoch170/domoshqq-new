@@ -56,7 +56,7 @@ export const Footer = () => {
                 Company
               </h4>
               <ul className="flex flex-col gap-4">
-                <li><Link to="/#about" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">About</Link></li>
+                <li><Link to="/about" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">About</Link></li>
                 <li><Link to="/privacy" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Privacy</Link></li>
                 <li><Link to="/terms" className="text-[14px] text-[#1A1A1A]/70 hover:text-[#F26522] transition-colors duration-300">Terms</Link></li>
               </ul>
